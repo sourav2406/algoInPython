@@ -12,14 +12,12 @@ class LinkedList:
         new_node.next = self.head
         self.head = new_node
 
-    def printList(self):
-        temp = self.head
-        if temp is None:
-            return
-
-        while temp:
-            print(temp.data)
+    def printList(self): 
+        temp = self.head 
+        while(temp): 
+            print(temp.data, end=' ') 
             temp = temp.next
+        print("\n")
 
     def length(self):
         count = 0
@@ -74,19 +72,47 @@ class LinkedList:
             curr = nextNode
         
         self.head = prev
-        
+    
+    def reverseInSize(self, head, k): 
+        current = head  
+        next  = None
+        prev = None
+        count = 0 
+          
+        # Reverse first k nodes of the linked list 
+        while(current is not None and count < k): 
+            next = current.next
+            current.next = prev 
+            prev = current 
+            current = next 
+            count += 1
+        # next is now a pointer to (k+1)th node 
+        # recursively call for the list starting 
+        # from current. And make rest of the list as 
+        # next of first node 
+        if next is not None: 
+            head.next = self.reverseInSize(next, k) 
+  
+        # prev is new head of the input list 
+        return prev 
 
 if __name__ == "__main__":
     llist = LinkedList()
+    llist.push(9) 
+    llist.push(8) 
+    llist.push(7) 
+    llist.push(6) 
+    llist.push(5) 
+    llist.push(4) 
+    llist.push(3) 
+    llist.push(2) 
     llist.push(1)
-    llist.push(2)
-    llist.push(3)
-    llist.push(4)
-    llist.push(5)
     llist.printList()
-    llist.length()
+    # llist.length()
     # llist.swapNode(3, 5)
     # llist.printList()
-    llist.reverse()
+    # llist.reverse()
+    # llist.printList()
+    llist.head = llist.reverseInSize(llist.head,3)
     llist.printList()
     
