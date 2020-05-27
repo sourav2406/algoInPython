@@ -19,7 +19,7 @@ class Stack():
             return False
 
     def peek(self):
-        return self.stack[len(self.stack) - 1]
+        return self.stack[-1]
 
     def printStack(self):
         print(self.stack)
