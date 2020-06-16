@@ -23,7 +23,7 @@ def printGivenLevel(node, level, ltr):
     if level == 1:
         print(node.data, end=' ')
     elif level > 1:
-        if ltr:
+        if not ltr:
             printGivenLevel(node.left, level - 1, ltr)
             printGivenLevel(node.right, level - 1, ltr)
         else:
@@ -36,7 +36,9 @@ def printSpiral(node):
 
     for i in range(1, h + 1):
         printGivenLevel(node, i, ltr)
-        ltr = not ltr
+        if i%2 == 0:
+            ltr = not ltr
+        print()
 
 #driver code
 root = Node(1)
@@ -44,5 +46,8 @@ root.left = Node(2)
 root.right = Node(3)
 root.left.left = Node(4)
 root.left.right = Node(5)
-
+root.left.left.left = Node(6)
+root.left.left.right = Node(7)
+root.left.left.left.left = Node(8)
+root.left.left.left.right = Node(9)
 printSpiral(root)
